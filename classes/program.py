@@ -11,6 +11,7 @@ class Program(Gclass):
 
     def __init__(self, id, title, category):
         super().__init__()
+        id = int(float(id))
         id = Program.get_id(id)
         self._id = id
         self._title = title

@@ -11,6 +11,7 @@ class University(Gclass):
 
     def __init__(self, id, name, created_date):
         super().__init__()
+        id = int(float(id))
         id = University.get_id(id)
         self._id = id
         self._name = name

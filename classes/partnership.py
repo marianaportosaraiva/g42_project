@@ -11,6 +11,7 @@ class Partnership(Gclass):
 
     def __init__(self, id, university_id, program_id, course_start_date, students_number=None):
         super().__init__()
+        id = int(float(id))
         id = Partnership.get_id(id) 
         self._id = id
         self._university_id = university_id
