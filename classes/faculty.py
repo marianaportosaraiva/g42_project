@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr 14 21:20:46 2026
-
-@author: mariana
-"""
-
 from classes.gclass import Gclass
 
 class Faculty(Gclass):
