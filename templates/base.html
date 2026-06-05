@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}G42 Exchange Programs{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            {% if ulogin == None %}
+                <li><a href="{{ url_for('login') }}" {% if request.endpoint == 'login' %}class="active"{% endif %}>Login</a></li>
+            {% else %}
+                <li><a href="{{ url_for('logoff') }}">Logoff</a></li>
+                <li><a href="{{ url_for('home') }}"        {% if request.endpoint == 'home' %}class="active"{% endif %}>Inicio</a></li>
+                <li><a href="{{ url_for('university') }}"  {% if request.endpoint == 'university' %}class="active"{% endif %}>Universidades</a></li>
+                <li><a href="{{ url_for('program') }}"     {% if request.endpoint == 'program' %}class="active"{% endif %}>Programas</a></li>
+                <li><a href="{{ url_for('faculty') }}"     {% if request.endpoint == 'faculty' %}class="active"{% endif %}>Faculdades</a></li>
+                <li><a href="{{ url_for('partnership') }}" {% if request.endpoint == 'partnership' %}class="active"{% endif %}>Parcerias</a></li>
+                <li><a href="{{ url_for('analytics') }}"   {% if request.endpoint == 'analytics' %}class="active"{% endif %}>Analise</a></li>
+                <li><a href="{{ url_for('userlogin') }}"   {% if request.endpoint == 'userlogin' %}class="active"{% endif %}>Users</a></li>
+                <li><a class="nav-user">User: {{ ulogin }}</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
