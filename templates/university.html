@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Universidades{% endblock %}
+{% block content %}
+<h1>️ Universidades</h1>
+
+<div class="btn-bar">
+    <button class="button1" {{ butshow }} onclick="window.location.href='{{ url_for('university') }}?option=edit'">️ Editar</button>
+    <button class="button1 danger" {{ butshow }} onclick="if(confirm('Eliminar esta universidade?')) window.location.href='{{ url_for('university') }}?option=delete'">️ Eliminar</button>
+    <button class="button1" {{ butshow }} onclick="window.location.href='{{ url_for('university') }}?option=insert'"> Inserir</button>
+    <button class="button1" {{ butedit }} type="submit" form="form"> Guardar</button>
+    <button class="button1" {{ butedit }} onclick="window.location.href='{{ url_for('university') }}?option=cancel'"> Cancelar</button>
+</div>
+
+<form id="form" action="{{ url_for('university') }}?option=save" method="post">
+    <div class="field">
+        <label for="id">ID:</label>
+        <input type="text" disabled id="id" name="id" value="{{ id }}" size="10"/>
+    </div>
+    <div class="field">
+        <label for="name">Nome:</label>
+        <input type="text" {{ butedit }} id="name" name="name" value="{{ name }}" size="40"/>
+    </div>
+    <div class="field">
+        <label for="created_date">Data de Criação:</label>
+        <input type="text" {{ butedit }} id="created_date" name="created_date" value="{{ created_date }}" placeholder="YYYY-MM-DD" size="20"/>
+    </div>
+</form>
+
+<div class="nav-bar">
+    <button class="button1" {{ butshow }} onclick="window.location.href='{{ url_for('university') }}?option=first'"> Primeiro</button>
+    <button class="button1" {{ butshow }} onclick="window.location.href='{{ url_for('university') }}?option=previous'"> Anterior</button>
+    <span>{{ pos }} / {{ total }}</span>
+    <button class="button1" {{ butshow }} onclick="window.location.href='{{ url_for('university') }}?option=next'">Seguinte </button>
+    <button class="button1" {{ butshow }} onclick="window.location.href='{{ url_for('university') }}?option=last'">Último </button>
+</div>
+{% endblock %}
