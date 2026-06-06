@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}G42 – Exchange Programs{% endblock %}
+{% block content %}
+
+{% if ulogin %}
+
+<h1>G42 – Exchange Programs</h1>
+<p>Bem-vindo, <strong>{{ ulogin }}</strong>. Utilize o menu para navegar na aplicação.</p>
+
+<h2>Resumo da Base de Dados</h2>
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="number">{{ stats.universities }}</div>
+        <div class="label">Universidades</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ stats.programs }}</div>
+        <div class="label">Programas</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ stats.faculties }}</div>
+        <div class="label">Faculdades</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ stats.partnerships }}</div>
+        <div class="label">Parcerias</div>
+    </div>
+</div>
+
+<h2>Navegar para</h2>
+<div class="menu-links">
+    <a href="{{ url_for('university') }}">Universidades</a>
+    <a href="{{ url_for('program') }}">Programas</a>
+    <a href="{{ url_for('faculty') }}">Faculdades</a>
+    <a href="{{ url_for('partnership') }}">Parcerias</a>
+    <a href="{{ url_for('analytics') }}">Análise de Dados</a>
+    <a href="{{ url_for('userlogin') }}">Utilizadores</a>
+</div>
+
+{% else %}
+
+<h1>G42 – Exchange Programs</h1>
+<p>Bem-vindo à aplicação de gestão de programas de intercâmbio universitário G42.</p>
+<p>Por favor faça <a href="{{ url_for('login') }}" style="color:#2d6a2d; font-weight:bold;">Login</a> para continuar.</p>
+
+{% endif %}
+
+{% endblock %}

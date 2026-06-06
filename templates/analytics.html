@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Analise de Dados{% endblock %}
+{% block content %}
+<h1>Analise de Dados</h1>
+<p>Analise dos programas de intercâmbio com Pandas, Matplotlib e Plotly.</p>
+
+<h2>Estatisticas Gerais</h2>
+<div class="analytics-grid">
+    <div class="analytics-card">
+        <div class="val">{{ stats.total_students }}</div>
+        <div class="lbl">Total de Estudantes</div>
+    </div>
+    <div class="analytics-card">
+        <div class="val">{{ stats.avg_students }}</div>
+        <div class="lbl">Media por Parceria</div>
+    </div>
+    <div class="analytics-card">
+        <div class="val">{{ stats.max_students }}</div>
+        <div class="lbl">Max. numa Parceria</div>
+    </div>
+    <div class="analytics-card">
+        <div class="val">{{ stats.num_categories }}</div>
+        <div class="lbl">Categorias de Programas</div>
+    </div>
+</div>
+
+<p><strong>Universidade com mais estudantes:</strong> {{ stats.top_university }}</p>
+<p><strong>Categoria mais comum:</strong> {{ stats.top_category }}</p>
+
+<h2>Graficos Estaticos (Matplotlib)</h2>
+
+<div class="chart-section">
+    <h3>Top 10 Universidades por Nr de Estudantes</h3>
+    <img src="{{ url_for('static', filename='charts/chart1.png') }}" alt="Top 10 Universidades">
+</div>
+
+<div class="chart-section">
+    <h3>Distribuicao de Programas por Categoria</h3>
+    <img src="{{ url_for('static', filename='charts/chart2.png') }}" alt="Programas por Categoria">
+</div>
+
+<div class="chart-section">
+    <h3>Media de Estudantes por Categoria de Programa</h3>
+    <img src="{{ url_for('static', filename='charts/chart3.png') }}" alt="Media por Categoria">
+</div>
+
+<h2>Graficos Interativos (Plotly)</h2>
+
+<div class="chart-section">
+    <h3>Top 10 Universidades por Nr de Estudantes – Interativo</h3>
+    <div id="plotly-chart4" style="width:100%; height:420px;"></div>
+</div>
+
+<div class="chart-section">
+    <h3>Media de Estudantes por Categoria – Grafico de Bolhas</h3>
+    <div id="plotly-chart5" style="width:100%; height:420px;"></div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script>
+    var data4 = {{ plotly_chart4 | safe }};
+    Plotly.newPlot('plotly-chart4', data4.data, data4.layout, {responsive: true});
+
+    var data5 = {{ plotly_chart5 | safe }};
+    Plotly.newPlot('plotly-chart5', data5.data, data5.layout, {responsive: true});
+</script>
+{% endblock %}
